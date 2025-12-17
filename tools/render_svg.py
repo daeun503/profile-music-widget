@@ -36,9 +36,9 @@ class SvgRenderer:
             svg = svg.replace("{{MARQUEE_DX}}", str(mp.marquee_dx))
             svg = svg.replace("{{MARQUEE_DUR}}", f"{mp.marquee_dur:.2f}")
 
-            svg = self._remove_block(svg, "TITLE_STATIC_START", "TITLE_STATIC_END")
+            svg = self._remove_block(svg, "DONT REMOVE: TITLE_STATIC_START", "DONT REMOVE: TITLE_STATIC_END")
         else:
-            svg = self._remove_block(svg, "TITLE_FLOW_START", "TITLE_FLOW_END")
+            svg = self._remove_block(svg, "DONT REMOVE: TITLE_FLOW_START", "DONT REMOVE: TITLE_FLOW_END")
 
         svg = svg.replace("{{TITLE}}", escape(ctx.title))
         svg = svg.replace("{{URL}}", escape(ctx.url))

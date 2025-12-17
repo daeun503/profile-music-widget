@@ -1,5 +1,15 @@
 name: generate-youtube-music-widget
 description: Generate a YouTube music widget
+
+inputs:
+  playlist_id:
+    description: "YouTube playlist id"
+    required: true
+  theme:
+    description: "Theme svg file name inside themes/"
+    required: false
+    default: "default.svg"
+
 runs:
   using: "composite"
   steps:
@@ -20,5 +30,8 @@ runs:
 
     - name: generate youtube music widget
       shell: bash
+      env:
+        YT_PLAYLIST_ID: ${{ inputs.playlist_id }}
+        YT_THEME: ${{ inputs.theme }}
       run: |
-        python tools/generate_widget.py
+        python generate_widget.py

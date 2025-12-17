@@ -1,9 +1,9 @@
 import base64
+import os
 from dataclasses import dataclass
 from datetime import datetime
 from pathlib import Path
 
-from tools.load_config import ConfigLoader
 from tools.media_client import YouTubeGifGenerator
 from tools.render_svg import RenderContext, SvgRenderer
 from tools.youtube_client import YouTubeClient
@@ -13,7 +13,6 @@ PROJECT_ROOT = Path(__file__).parent
 
 @dataclass(frozen=True)
 class Paths:
-    readme_path: Path = PROJECT_ROOT / "README.md"
     themes_dir: Path = PROJECT_ROOT / "themes"
     out_dir: Path = PROJECT_ROOT / "dist"
     out_svg: Path = PROJECT_ROOT / "dist/youtube-music-widget.svg"
@@ -28,22 +27,17 @@ def to_base64(data: bytes, mime: str) -> str:
 class YouTubeCardGeneratorApp:
     def __init__(self) -> None:
         self.paths = Paths()
-
-        self.yt_config = ConfigLoader()
         self.yt_client = YouTubeClient()
-
         self.gif = YouTubeGifGenerator()
         self.svg = SvgRenderer()
 
     def run(self) -> None:
-        md = self.paths.readme_path.read_text(encoding="utf-8")
-        yt_config = self.yt_config.from_markdown(md)
-
-        theme_path = self.paths.themes_dir / yt_config.theme
+        theme_path = self.paths.themes_dir / os.getenv("YT_THEME").strip()
         if not theme_path.exists():
             raise RuntimeError(f"theme 파일을 찾을 수 없어요: {theme_path}")
 
-        entry = self.yt_client.pick_random_entry(yt_config.playlist_id)
+        playlist_id = os.getenv("YT_PLAYLIST_ID").strip()
+        entry = self.yt_client.pick_random_entry(playlist_id)
 
         self.paths.out_dir.mkdir(parents=True, exist_ok=True)
         image_data = self.yt_client.image_url_to_base64(entry.thumbnail_url)

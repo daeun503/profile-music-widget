@@ -36,7 +36,7 @@
     <g clip-path="url(#cardClip)">
         <rect width="560" height="160" rx="26" fill="url(#bgGrad)"/>
 
-        <!-- 배경 GIF/이미지 -->
+        <!-- Background GIF/IMAGE -->
         <image href="{{BG_URL}}"
                x="0" y="0" width="560" height="160"
                preserveAspectRatio="xMidYMid slice"
@@ -61,7 +61,7 @@
 
             <!-- Title: marquee -->
             <g clip-path="url(#titleClip)">
-                <!-- TITLE_FLOW_START -->
+                <!-- DONT REMOVE: TITLE_FLOW_START -->
                 <g clip-path="url(#titleClip)">
                     <g>
                         <text x="160" y="68" class="t-title">{{TITLE}}</text>
@@ -87,11 +87,11 @@
                                 repeatCount="indefinite"/>
                     </g>
                 </g>
-                <!-- TITLE_FLOW_END -->
+                <!-- DONT REMOVE: TITLE_FLOW_END -->
 
-                <!-- TITLE_STATIC_START -->
+                <!-- DONT REMOVE: TITLE_STATIC_START -->
                 <text x="160" y="68" class="t-title">{{TITLE}}</text>
-                <!-- TITLE_STATIC_END -->
+                <!-- DONT REMOVE: TITLE_STATIC_END -->
             </g>
 
             <!-- =========================
@@ -138,7 +138,7 @@
                              keyTimes="0;0.999;0.9995;1"/>
                 </circle>
 
-                <!-- 시간 토큰 -->
+                <!-- Time -->
                 <text x="160" y="98" class="t-meta">{{TIME_LEFT}}</text>
                 <text x="535" y="98" class="t-meta" text-anchor="end">{{TIME_RIGHT}}</text>
             </g>
