@@ -1,6 +1,25 @@
 # profile-music-widget
 
 YouTube(Playlist)에서 랜덤 곡을 골라 **GitHub README에 넣을 SVG 음악 위젯 카드**를 생성하는 레포입니다.  
+(* 배경 GIF 테마는 yt-dlp 봇 이슈로 현재 지원하지 않습니다)
+
+<div align="center">
+  <p>
+    ꜱᴀᴍᴘʟᴇ<br/>
+    ▾
+  </p>
+
+<img src="./sample/sample2.svg" alt="playing" />
+
+<br/>
+<br/>
+
+<img src="./sample/sample1.svg" alt="playing" />
+<br/>
+</div>
+
+<br/>
+<br/>
 
 당신의 **`USERNAME` 레포지토리**를 다음과 같은 구조로 만든 후, `main.yml` 파일에 아래 파일대로 작성합니다.
 ```
@@ -53,3 +72,4 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 ```
+

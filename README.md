@@ -3,6 +3,25 @@
 This repository generates an **SVG music widget card** for your GitHub README  
 by randomly selecting a song from a **YouTube playlist**.
 
+(* Background GIF themes are currently not supported due to yt-dlp bot issues)
+
+<div align="center">
+  <p>
+    ꜱᴀᴍᴘʟᴇ<br/>
+    ▾
+  </p>
+
+<img src="./sample/sample2.svg" alt="playing" />
+
+<br/>
+<br/>
+
+<img src="./sample/sample1.svg" alt="playing" />
+<br/>
+</div>
+
+<br/>
+<br/>
 
 Create your **`USERNAME` repository** with the following structure,  
 then write the `main.yml` file as shown below.
