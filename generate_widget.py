@@ -36,6 +36,8 @@ class YouTubeCardGeneratorApp:
         if not theme_path.exists():
             raise RuntimeError(f"theme 파일을 찾을 수 없어요: {theme_path}")
 
+        is_gif_theme = os.getenv("YT_IS_GIF_BG") == "true"
+
         playlist_id = os.getenv("YT_PLAYLIST_ID").strip()
         entry = self.yt_client.pick_random_entry(playlist_id)
 
@@ -43,21 +45,25 @@ class YouTubeCardGeneratorApp:
         image_data = self.yt_client.image_url_to_base64(entry.thumbnail_url)
         thumb_data = to_base64(image_data[0], image_data[1])
 
-        try:
-            gif_path = self.gif.make_10s_gif(entry.video_id, self.paths.out_bg_gif)
-            bg_data = to_base64(gif_path.read_bytes(), "image/gif")
-        except Exception as e:
-            print(f"[WARN] GIF background 생성 실패 → 썸네일로 대체합니다: {e}")
-            bg_data = thumb_data
+        bg_data = thumb_data
+        if is_gif_theme:
+            try:
+                gif_path = self.gif.make_10s_gif(entry.video_id, self.paths.out_bg_gif)
+                bg_data = to_base64(gif_path.read_bytes(), "image/gif")
+            except Exception as e:
+                print(f"[WARN] GIF background 생성 실패 → 썸네일로 대체합니다: {e}")
 
+        color1, color2 = self.svg.extract_color_from_img(thumb_data)
         ctx = RenderContext(
             title=entry.title,
             url=entry.url,
-            thumb_url=thumb_data,
-            bg_url=bg_data,
+            thumb_data=thumb_data,
+            bg_data=bg_data,
             time_left="00:00",
             time_right=datetime.now().strftime("%m:%d"),
             channel_name=entry.channel_name,
+            color_1=color1,
+            color_2=color2,
         )
 
         rendered = self.svg.render(theme_path, ctx)

@@ -1,0 +1,432 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="420" height="760" viewBox="0 0 420 760">
+  <defs>
+    <!-- =======================
+         PAINT / DEPTH
+    ======================== -->
+    <clipPath id="cardClip">
+      <rect width="420" height="760" rx="34"/>
+    </clipPath>
+
+    <clipPath id="thumbClip">
+      <rect x="50" y="92" width="320" height="320" rx="26"/>
+    </clipPath>
+
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="{{COLOR_1}}" stop-opacity="0.55"/>
+      <stop offset="1" stop-color="{{COLOR_2}}" stop-opacity="0.55"/>
+    </linearGradient>
+
+    <radialGradient id="glowTop" cx="45%" cy="8%" r="85%">
+      <stop offset="0" stop-color="#ff6b6b" stop-opacity="0.09"/>
+      <stop offset="1" stop-color="#000" stop-opacity="0"/>
+    </radialGradient>
+
+    <radialGradient id="glowBottom" cx="55%" cy="92%" r="95%">
+      <stop offset="0" stop-color="#ff4d4d" stop-opacity="0.07"/>
+      <stop offset="1" stop-color="#000" stop-opacity="0"/>
+    </radialGradient>
+
+    <filter id="softShadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="12" stdDeviation="16" flood-color="#000" flood-opacity="0.45"/>
+    </filter>
+
+    <linearGradient id="pillFill" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.10"/>
+      <stop offset="1" stop-color="#ffffff" stop-opacity="0.04"/>
+    </linearGradient>
+
+    <filter id="pillShadow" x="-40%" y="-40%" width="180%" height="180%">
+      <feDropShadow dx="0" dy="7" stdDeviation="9" flood-color="#000" flood-opacity="0.32"/>
+    </filter>
+
+    <!-- =======================
+         ICON SYSTEM (SYMBOL)
+    ======================== -->
+    <style>
+      .tTop { font: 700 12px ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto; fill:
+      rgba(255,255,255,.82); }
+      .tTitle { font: 900 26px ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto; fill:
+      rgba(255,255,255,.95); letter-spacing: 0.2px; }
+      .tArtist { font: 650 15px ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto; fill:
+      rgba(255,255,255,.70); }
+      .tSmall { font: 650 12px ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto; fill:
+      rgba(255,255,255,.58); }
+
+      .icon-strong { color: rgba(255,255,255,.90); }
+      .icon-dim { color: rgba(255,255,255,.62); }
+
+      .icon { stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+      .icon-fill { fill: currentColor; stroke: none; }
+    </style>
+
+    <symbol id="i-back" viewBox="0 0 24 24">
+      <path class="icon" d="M15 18l-6-6 6-6"/>
+    </symbol>
+
+    <symbol id="i-more" viewBox="0 0 24 24">
+      <circle class="icon-fill" cx="12" cy="5" r="1.8"/>
+      <circle class="icon-fill" cx="12" cy="12" r="1.8"/>
+      <circle class="icon-fill" cx="12" cy="19" r="1.8"/>
+    </symbol>
+
+    <symbol id="i-like" viewBox="0 0 24 24">
+      <path class="icon" d="M7 11v10H4a2 2 0 0 1-2-2v-6a2 2 0 0 1 2-2h3z"/>
+      <path class="icon" d="M7 11l5-8a2 2 0 0 1 2 2v6h5a2 2 0 0 1 2 2l-2 7a2 2 0 0 1-2 1H7"/>
+    </symbol>
+
+    <symbol id="i-like-fill" viewBox="0 0 24 24">
+      <path class="icon-fill" d="M7 11v10H4a2 2 0 0 1-2-2v-6a2 2 0 0 1 2-2h3z"/>
+      <path class="icon-fill" d="M7 11l5-8a2 2 0 0 1 2 2v6h5a2 2 0 0 1 2 2l-2 7a2 2 0 0 1-2 1H7"/>
+    </symbol>
+
+    <symbol id="i-dislike" viewBox="0 0 24 24">
+      <path class="icon" d="M17 13V3h3a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2h-3z"/>
+      <path class="icon" d="M17 13l-5 8a2 2 0 0 1-2-2v-6H5a2 2 0 0 1-2-2l2-7a2 2 0 0 1 2-1h10"/>
+    </symbol>
+
+    <symbol id="i-comment" viewBox="0 0 24 24">
+      <path class="icon" d="M21 15a4 4 0 0 1-4 4H8l-5 3V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4z"/>
+    </symbol>
+
+    <symbol id="i-save" viewBox="0 0 24 24">
+      <path class="icon" d="M5 7a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v14l-7-4-7 4z"/>
+    </symbol>
+
+    <symbol id="i-share" viewBox="0 0 24 24">
+      <path class="icon" d="M4 12v7a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-7"/>
+      <path class="icon" d="M12 16V3"/>
+      <path class="icon" d="M7 8l5-5 5 5"/>
+    </symbol>
+
+    <symbol id="i-shuffle" viewBox="0 0 24 24">
+      <path class="icon" d="M16 3h5v5"/>
+      <path class="icon" d="M4 7h6c2 0 3 1 4 2l1 1"/>
+      <path class="icon" d="M21 3l-6 6"/>
+      <path class="icon" d="M16 21h5v-5"/>
+      <path class="icon" d="M4 17h6c2 0 3-1 4-2l1-1"/>
+      <path class="icon" d="M21 21l-6-6"/>
+    </symbol>
+
+    <symbol id="i-prev" viewBox="0 0 24 24">
+      <path class="icon-fill" d="M7 6h2v12H7z"/>
+      <path class="icon-fill" d="M19 6v12l-9-6z"/>
+    </symbol>
+
+    <symbol id="i-next" viewBox="0 0 24 24">
+      <path class="icon-fill" d="M15 6h2v12h-2z"/>
+      <path class="icon-fill" d="M5 6v12l9-6z"/>
+    </symbol>
+
+    <symbol id="i-pause" viewBox="0 0 24 24">
+      <path class="icon-fill" d="M7 6h4v12H7z"/>
+      <path class="icon-fill" d="M13 6h4v12h-4z"/>
+    </symbol>
+
+    <symbol id="i-repeat" viewBox="0 0 24 24">
+      <path class="icon" d="M17 2l4 4-4 4"/>
+      <path class="icon" d="M3 11V9a4 4 0 0 1 4-4h14"/>
+      <path class="icon" d="M7 22l-4-4 4-4"/>
+      <path class="icon" d="M21 13v2a4 4 0 0 1-4 4H3"/>
+    </symbol>
+
+    <!-- soft bokeh gradients -->
+    <radialGradient id="bokehW" cx="50%" cy="50%" r="50%">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.62"/>
+      <stop offset="55%" stop-color="#ffffff" stop-opacity="0.22"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+    </radialGradient>
+
+    <radialGradient id="bokehP" cx="50%" cy="50%" r="50%">
+      <stop offset="0" stop-color="#ffd6e6" stop-opacity="0.58"/>
+      <stop offset="55%" stop-color="#ffd6e6" stop-opacity="0.20"/>
+      <stop offset="100%" stop-color="#ffd6e6" stop-opacity="0"/>
+    </radialGradient>
+
+    <radialGradient id="bokehG" cx="50%" cy="50%" r="50%">
+      <stop offset="0" stop-color="#ffe7c7" stop-opacity="0.56"/>
+      <stop offset="55%" stop-color="#ffe7c7" stop-opacity="0.18"/>
+      <stop offset="100%" stop-color="#ffe7c7" stop-opacity="0"/>
+    </radialGradient>
+
+
+    <!-- softer sparkle glow -->
+    <filter id="sparkGlowSoft" x="-90%" y="-90%" width="280%" height="280%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="1.6" result="b"/>
+      <feColorMatrix in="b" type="matrix"
+                     values="1 0 0 0 0
+            0 1 0 0 0
+            0 0 1 0 0
+            0 0 0 1.35 0"/>
+      <feMerge>
+        <feMergeNode in="g"/>
+      </feMerge>
+    </filter>
+
+
+  </defs>
+
+  <!-- =======================
+       SCREEN
+  ======================== -->
+
+
+  <g filter="url(#softShadow)" clip-path="url(#cardClip)">
+
+    <rect width="420" height="760" rx="34" fill="url(#bg)"/>
+    <!-- ✨ Falling Bokeh (many, soft, circles only) - FIXED for local rendering -->
+    <g clip-path="url(#cardClip)"
+       mask="url(#sparkMask)"
+       filter="url(#sparkGlowSoft)"
+       opacity="0.90">
+
+      <!-- ===== column A (left margin / header) ===== -->
+      <g>
+        <animateTransform attributeName="transform" type="translate"
+                          values="36 -60; 48 820" dur="12.5s" repeatCount="indefinite"/>
+        <animate attributeName="opacity"
+                 values="0;0.45;0.12;0.38;0" dur="6.4s" repeatCount="indefinite"/>
+        <circle r="8" fill="url(#bokehW)"/>
+      </g>
+
+      <g>
+        <animateTransform attributeName="transform" type="translate"
+                          values="24 -140; 40 820" dur="10.8s" repeatCount="indefinite"/>
+        <animate attributeName="opacity"
+                 values="0;0.42;0.10;0.35;0" dur="5.6s" repeatCount="indefinite"/>
+        <circle r="6" fill="url(#bokehP)"/>
+      </g>
+
+      <g>
+        <animateTransform attributeName="transform" type="translate"
+                          values="54 -220; 66 820" dur="13.6s" repeatCount="indefinite"/>
+        <animate attributeName="opacity"
+                 values="0;0.48;0.14;0.40;0" dur="7.2s" repeatCount="indefinite"/>
+        <circle r="7" fill="url(#bokehW)"/>
+      </g>
+
+      <!-- ===== column B (right margin / header) ===== -->
+      <g>
+        <animateTransform attributeName="transform" type="translate"
+                          values="392 -80; 376 820" dur="11.4s" repeatCount="indefinite"/>
+        <animate attributeName="opacity"
+                 values="0;0.44;0.12;0.36;0" dur="6.1s" repeatCount="indefinite"/>
+        <circle r="7" fill="url(#bokehW)"/>
+      </g>
+
+      <g>
+        <animateTransform attributeName="transform" type="translate"
+                          values="404 -180; 388 820" dur="14.2s" repeatCount="indefinite"/>
+        <animate attributeName="opacity"
+                 values="0;0.50;0.15;0.42;0" dur="7.8s" repeatCount="indefinite"/>
+        <circle r="9" fill="url(#bokehG)"/>
+      </g>
+
+      <g>
+        <animateTransform attributeName="transform" type="translate"
+                          values="380 -260; 366 820" dur="10.1s" repeatCount="indefinite"/>
+        <animate attributeName="opacity"
+                 values="0;0.40;0.10;0.34;0" dur="5.2s" repeatCount="indefinite"/>
+        <circle r="6" fill="url(#bokehP)"/>
+      </g>
+
+      <!-- ===== column C (between header & thumbnail side gaps) ===== -->
+      <g>
+        <animateTransform attributeName="transform" type="translate"
+                          values="96 -120; 112 820" dur="12.0s" repeatCount="indefinite"/>
+        <animate attributeName="opacity"
+                 values="0;0.46;0.12;0.38;0" dur="6.6s" repeatCount="indefinite"/>
+        <circle r="8" fill="url(#bokehW)"/>
+      </g>
+
+      <g>
+        <animateTransform attributeName="transform" type="translate"
+                          values="132 -200; 146 820" dur="9.6s" repeatCount="indefinite"/>
+        <animate attributeName="opacity"
+                 values="0;0.42;0.10;0.36;0" dur="5.4s" repeatCount="indefinite"/>
+        <circle r="6" fill="url(#bokehP)"/>
+      </g>
+
+      <g>
+        <animateTransform attributeName="transform" type="translate"
+                          values="300 -160; 284 820" dur="13.0s" repeatCount="indefinite"/>
+        <animate attributeName="opacity"
+                 values="0;0.48;0.14;0.40;0" dur="7.0s" repeatCount="indefinite"/>
+        <circle r="7" fill="url(#bokehG)"/>
+      </g>
+
+      <!-- ===== column D (controls / progress area) ===== -->
+      <g>
+        <animateTransform attributeName="transform" type="translate"
+                          values="72 -320; 88 820" dur="15.0s" repeatCount="indefinite"/>
+        <animate attributeName="opacity"
+                 values="0;0.50;0.16;0.42;0" dur="8.2s" repeatCount="indefinite"/>
+        <circle r="9" fill="url(#bokehW)"/>
+      </g>
+
+      <g>
+        <animateTransform attributeName="transform" type="translate"
+                          values="210 -280; 196 820" dur="11.8s" repeatCount="indefinite"/>
+        <animate attributeName="opacity"
+                 values="0;0.45;0.12;0.38;0" dur="6.0s" repeatCount="indefinite"/>
+        <circle r="7" fill="url(#bokehP)"/>
+      </g>
+
+      <g>
+        <animateTransform attributeName="transform" type="translate"
+                          values="348 -360; 332 820" dur="16.2s" repeatCount="indefinite"/>
+        <animate attributeName="opacity"
+                 values="0;0.52;0.18;0.44;0" dur="9.0s" repeatCount="indefinite"/>
+        <circle r="10" fill="url(#bokehG)"/>
+      </g>
+
+      <!-- ===== column E (bottom nav area) ===== -->
+      <g>
+        <animateTransform attributeName="transform" type="translate"
+                          values="120 -420; 136 820" dur="14.0s" repeatCount="indefinite"/>
+        <animate attributeName="opacity"
+                 values="0;0.46;0.14;0.38;0" dur="7.0s" repeatCount="indefinite"/>
+        <circle r="8" fill="url(#bokehW)"/>
+      </g>
+
+      <g>
+        <animateTransform attributeName="transform" type="translate"
+                          values="260 -480; 244 820" dur="10.6s" repeatCount="indefinite"/>
+        <animate attributeName="opacity"
+                 values="0;0.42;0.10;0.34;0" dur="5.0s" repeatCount="indefinite"/>
+        <circle r="6" fill="url(#bokehP)"/>
+      </g>
+
+      <g>
+        <animateTransform attributeName="transform" type="translate"
+                          values="380 -520; 364 820" dur="15.6s" repeatCount="indefinite"/>
+        <animate attributeName="opacity"
+                 values="0;0.50;0.16;0.42;0" dur="8.4s" repeatCount="indefinite"/>
+        <circle r="9" fill="url(#bokehG)"/>
+      </g>
+
+    </g>
+
+
+    <rect width="420" height="760" rx="34" fill="url(#glowTop)"/>
+    <rect width="420" height="760" rx="34" fill="url(#glowBottom)"/>
+    <rect x="1" y="1" width="418" height="758" rx="33" fill="none" stroke="rgba(255,255,255,.10)"/>
+  </g>
+
+  <!-- =======================
+       TOP CONTROLS
+  ======================== -->
+  <g>
+    <g transform="translate(32,56)">
+      <use href="#i-back" x="-12" y="-12" width="24" height="24" class="icon-strong"/>
+    </g>
+
+    <g transform="translate(210,54)" filter="url(#pillShadow)">
+      <rect x="-104" y="-16" width="208" height="32" rx="16" fill="rgba(255,255,255,.08)"/>
+      <rect x="-100" y="-13" width="102" height="26" rx="13" fill="rgba(255,255,255,.16)"/>
+      <text x="-50" y="6" class="tTop" text-anchor="middle" fill="rgba(0,0,0,.65)">노래</text>
+      <text x="52" y="6" class="tTop" text-anchor="middle" fill="rgba(255,255,255,.40)">동영상</text>
+    </g>
+
+    <g transform="translate(392,56)">
+      <use href="#i-more" x="-10" y="-10" width="20" height="20" class="icon-strong"/>
+    </g>
+  </g>
+
+  <!-- =======================
+       ALBUM ART
+  ======================== -->
+  <g clip-path="url(#thumbClip)">
+    <rect x="50" y="92" width="320" height="320" rx="26" fill="rgba(255,255,255,.06)"
+          stroke="rgba(255,255,255,.10)"/>
+    <image href="{{THUMB_URL}}" x="50" y="92" width="320" height="320" preserveAspectRatio="xMidYMid slice"/>
+    <rect x="51" y="93" width="318" height="318" rx="25" fill="none" stroke="rgba(255,255,255,.08)"/>
+  </g>
+
+  <!-- =======================
+       TITLE / ARTIST
+  ======================== -->
+  <text x="48" y="472" class="tTitle">{{TITLE}}</text>
+  <text x="48" y="500" class="tArtist">{{CHANNEL_NAME}}</text>
+
+  <!-- =======================
+       ACTION PILLS
+  ======================== -->
+  <g transform="translate(48,516)" filter="url(#pillShadow)">
+    <g transform="translate(0,0)">
+      <circle cx="18" cy="18" r="18" fill="url(#pillFill)" stroke="rgba(255,255,255,.10)"/>
+      <use href="#i-like-fill" x="9" y="9" width="18" height="18" class="icon-dim"/>
+      <use href="#i-like" x="9" y="9" width="18" height="18" class="icon-dim"/>
+    </g>
+
+    <g transform="translate(46,0)">
+      <circle cx="18" cy="18" r="18" fill="url(#pillFill)" stroke="rgba(255,255,255,.10)"/>
+      <use href="#i-dislike" x="9" y="9" width="18" height="18" class="icon-dim"/>
+    </g>
+
+    <g transform="translate(92,0)">
+      <circle cx="18" cy="18" r="18" fill="url(#pillFill)" stroke="rgba(255,255,255,.10)"/>
+      <use href="#i-comment" x="9" y="9" width="18" height="18" class="icon-dim"/>
+    </g>
+
+    <g transform="translate(142,0)">
+      <rect x="0" y="0" width="84" height="36" rx="18" fill="rgba(255,255,255,.09)"
+            stroke="rgba(255,255,255,.10)"/>
+      <use href="#i-save" x="12" y="9" width="18" height="18" class="icon-strong"/>
+      <text x="52" y="23" class="tTop" text-anchor="middle">Save</text>
+    </g>
+
+    <g transform="translate(232,0)">
+      <rect x="0" y="0" width="84" height="36" rx="18" fill="rgba(255,255,255,.09)"
+            stroke="rgba(255,255,255,.10)"/>
+      <use href="#i-share" x="12" y="9" width="18" height="18" class="icon-strong"/>
+      <text x="52" y="23" class="tTop" text-anchor="middle">Share</text>
+    </g>
+  </g>
+
+  <!-- =======================
+       PROGRESS BAR
+  ======================== -->
+  <g transform="translate(48,572)">
+    <rect x="0" y="0" width="324" height="6" rx="3" fill="rgba(255,255,255,.14)"/>
+    <rect x="0" y="0" width="{{PROGRESS_W}}" height="6" rx="3" fill="rgba(255,255,255,.72)"/>
+    <circle cx="{{PROGRESS_W}}" cy="3" r="6" fill="rgba(255,255,255,.88)"/>
+    <text x="0" y="30" class="tSmall">{{TIME_LEFT}}</text>
+    <text x="324" y="30" class="tSmall" text-anchor="end">{{TIME_RIGHT}}</text>
+  </g>
+
+  <!-- =======================
+       PLAYER CONTROLS
+  ======================== -->
+  <g>
+    <g transform="translate(74,650)">
+      <use href="#i-shuffle" x="-10" y="-10" width="20" height="20" class="icon-dim"/>
+    </g>
+
+    <g transform="translate(146,650)">
+      <use href="#i-prev" x="-11" y="-11" width="22" height="22" class="icon-strong"/>
+    </g>
+
+    <g transform="translate(210,650)">
+      <circle cx="0" cy="0" r="24" fill="rgba(255,255,255,.06)"/>
+      <use href="#i-pause" x="-12" y="-12" width="24" height="24" class="icon-strong"/>
+    </g>
+
+    <g transform="translate(274,650)">
+      <use href="#i-next" x="-11" y="-11" width="22" height="22" class="icon-strong"/>
+    </g>
+
+    <g transform="translate(346,650)">
+      <use href="#i-repeat" x="-10" y="-10" width="20" height="20" class="icon-dim"/>
+    </g>
+  </g>
+
+  <!-- =======================
+       BOTTOM NAV
+  ======================== -->
+  <g transform="translate(0,712)">
+    <rect x="24" y="0" width="372" height="56" rx="18" fill="rgba(255,255,255,.05)" stroke="rgba(255,255,255,.08)"/>
+    <text x="78" y="35" class="tSmall" text-anchor="middle" fill="rgba(255,255,255,.55)">다음 트랙</text>
+    <text x="210" y="35" class="tSmall" text-anchor="middle" fill="rgba(255,255,255,.85)">가사</text>
+    <text x="342" y="35" class="tSmall" text-anchor="middle" fill="rgba(255,255,255,.55)">관련 항목</text>
+  </g>
+</svg>

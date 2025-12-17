@@ -9,6 +9,10 @@ inputs:
     description: "Theme svg file name inside themes/"
     required: false
     default: "default.svg"
+  is_gif_bg:
+    description: "Whether to use gif background or not"
+    required: false
+    default: "false"
 
 runs:
   using: "composite"
@@ -26,12 +30,13 @@ runs:
       shell: bash
       run: |
         python -m pip install --upgrade pip
-        pip install feedparser requests
+        pip install feedparser requests colorthief
 
     - name: generate youtube music widget
       shell: bash
       env:
         YT_PLAYLIST_ID: ${{ inputs.playlist_id }}
         YT_THEME: ${{ inputs.theme }}
+        YT_IS_GIF_BG: ${{ inputs.is_gif_bg }}
       run: |
         python generate_widget.py
