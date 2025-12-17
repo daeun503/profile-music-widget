@@ -1,5 +1,10 @@
 name: generate-youtube-music-widget
-description: Generate a YouTube music widget
+description: Generate a YouTube Music widget for GitHub profile README
+author: daeun503
+
+branding:
+  icon: image
+  color: purple
 
 inputs:
   playlist_id:
