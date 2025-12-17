@@ -32,11 +32,17 @@ runs:
         python -m pip install --upgrade pip
         pip install feedparser requests colorthief
 
-    - name: generate youtube music widget
+    - name: Generate youtube music widget
       shell: bash
       env:
         YT_PLAYLIST_ID: ${{ inputs.playlist_id }}
         YT_THEME: ${{ inputs.theme }}
         YT_IS_GIF_BG: ${{ inputs.is_gif_bg }}
       run: |
-        python generate_widget.py
+        python "$GITHUB_ACTION_PATH/generate_widget.py"
+
+    - name: Copy widget dist to workspace
+      shell: bash
+      run: |
+        mkdir -p "$GITHUB_WORKSPACE/dist"
+        rsync -av "$GITHUB_ACTION_PATH/dist/" "$GITHUB_WORKSPACE/dist/"
