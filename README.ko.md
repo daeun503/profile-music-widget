@@ -1,12 +1,8 @@
 # profile-music-widget
 
-This repository generates an **SVG music widget card** for your GitHub README  
-by randomly selecting a song from a **YouTube playlist**.
+YouTube(Playlist)에서 랜덤 곡을 골라 **GitHub README에 넣을 SVG 음악 위젯 카드**를 생성하는 레포입니다.  
 
-
-Create your **`USERNAME` repository** with the following structure,  
-then write the `main.yml` file as shown below.
-
+당신의 **`USERNAME` 레포지토리**를 다음과 같은 구조로 만든 후, `main.yml` 파일에 아래 파일대로 작성합니다.
 ```
 USERNAME/
 ├── README.md
@@ -15,10 +11,10 @@ USERNAME/
         └── main.yml
 ```
 
-Required changes
 
-- {{ YOUR_PLAYLIST_ID }}: Replace with the YouTube playlist ID to display in the widget
-- {{ YOUR_THEME }}: The theme to use. Currently supported themes: default.svg (more themes coming soon)
+변경이 필요한 부분
+- `{{ YOUR_PLAYLIST_ID }}`: 위젯에 표시할 YouTube 플레이리스트 ID로 변경
+- `{{ YOUR_THEME }}`: 사용할 테마. 현재 지원 테마: default.svg (추후 추가 예정)
 
 ```yml
 # main.yml
