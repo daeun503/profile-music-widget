@@ -34,7 +34,7 @@ class YouTubeCardGeneratorApp:
     def run(self) -> None:
         theme_path = self.paths.themes_dir / os.getenv("YT_THEME").strip()
         if not theme_path.exists():
-            raise RuntimeError(f"theme 파일을 찾을 수 없어요: {theme_path}")
+            raise RuntimeError(f"Theme file not found: {theme_path}")
 
         is_gif_theme = os.getenv("YT_IS_GIF_BG") == "true"
 
@@ -51,7 +51,7 @@ class YouTubeCardGeneratorApp:
                 gif_path = self.gif.make_10s_gif(entry.video_id, self.paths.out_bg_gif)
                 bg_data = to_base64(gif_path.read_bytes(), "image/gif")
             except Exception as e:
-                print(f"[WARN] GIF background 생성 실패 → 썸네일로 대체합니다: {e}")
+                print(f"[WARN] Failed to generate GIF background → falling back to thumbnail: {e}")
 
         color1, color2 = self.svg.extract_color_from_img(thumb_data)
         ctx = RenderContext(

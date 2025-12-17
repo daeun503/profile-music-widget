@@ -40,11 +40,11 @@
            opacity="0.55"
            filter="url(#bgBlur)"/>
 
-    <!-- 가독성 오버레이 -->
+    <!-- Readability overlay -->
     <rect x="0" y="0" width="560" height="160" fill="rgba(0,0,0,0.35)"/>
 
     <a href="{{URL}}" target="_blank" rel="noopener noreferrer">
-      <!-- 썸네일 -->
+      <!-- thumbnail -->
       <g class="shadow" clip-path="url(#thumbClip)">
         <image href="{{THUMB_URL}}"
                x="18" y="18" width="124" height="124"
@@ -92,11 +92,12 @@
       </g>
 
       <!-- =========================
-           DOTTED PLAYER BAR (점프 루프)
+           DOTTED PLAYER BAR (JUMP LOOP)
            ========================= -->
-      <!-- 트랙 시작/끝: x1=200, x2=500 (길이 300) -->
+
+      <!-- Track start/end: x1=200, x2=500 (length 300) -->
       <g>
-        <!-- 점선 트랙 -->
+        <!-- Dotted track -->
         <line x1="200" y1="94" x2="500" y2="94"
               stroke="rgba(255,255,255,0.70)"
               stroke-width="2"
@@ -104,7 +105,7 @@
               stroke-dasharray="2 7"
               opacity="0.55"/>
 
-        <!-- 진행 바: 0 -> 300 증가 후, 즉시 0으로 점프 -->
+        <!-- Progress bar: increases from 0 -> 300, then instantly jumps back to 0 -->
         <rect x="200" y="93" width="0" height="2" rx="2"
               fill="rgba(255,255,255)">
           <animate attributeName="width"
@@ -115,7 +116,7 @@
                    keyTimes="0;0.999;0.9995;1"/>
         </rect>
 
-        <!-- 노브: 200 -> 500 이동 후, 즉시 200으로 점프 -->
+        <!-- Knob: moves from 200 -> 500, then instantly jumps back to 200 -->
         <circle cx="200" cy="94" r="6" fill="rgba(255,255,255)">
           <animate attributeName="cx"
                    dur="60s"
@@ -125,7 +126,7 @@
                    keyTimes="0;0.999;0.9995;1"/>
         </circle>
 
-        <!-- 노브 글로우 -->
+        <!-- Knob glow -->
         <circle cx="200" cy="94" r="10" fill="rgba(255,255,255,0.10)">
           <animate attributeName="cx"
                    dur="60s"

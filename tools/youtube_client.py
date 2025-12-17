@@ -34,7 +34,7 @@ class YouTubeClient:
 
         playlist_entries = feedparser.parse(r.content).entries
         if not playlist_entries:
-            raise RuntimeError(f"플레이리스트 RSS를 읽어올 수 없어요: {playlist_url}")
+            raise RuntimeError(f"Failed to read the playlist RSS: {playlist_url}")
 
         return playlist_entries
 
@@ -46,7 +46,7 @@ class YouTubeClient:
         title = entry.get("title")
         url = entry.get("link")
         if not video_id or not title or not url:
-            raise RuntimeError("잘못된 비디오 항목을 선택했어요.")
+            raise RuntimeError("An invalid video entry was selected.")
 
         thumb_url = f"https://i.ytimg.com/vi/{video_id}/hqdefault.jpg"
         channel_name = "Unknown"

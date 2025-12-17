@@ -16,6 +16,12 @@
       <stop offset="1" stop-color="{{COLOR_2}}" stop-opacity="0.55"/>
     </linearGradient>
 
+    <linearGradient id="pillFill" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.10"/>
+      <stop offset="1" stop-color="#ffffff" stop-opacity="0.04"/>
+    </linearGradient>
+
+    <!-- radialGradient -->
     <radialGradient id="glowTop" cx="45%" cy="8%" r="85%">
       <stop offset="0" stop-color="#ff6b6b" stop-opacity="0.09"/>
       <stop offset="1" stop-color="#000" stop-opacity="0"/>
@@ -26,17 +32,43 @@
       <stop offset="1" stop-color="#000" stop-opacity="0"/>
     </radialGradient>
 
+    <radialGradient id="bokehW" cx="50%" cy="50%" r="50%">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.62"/>
+      <stop offset="55%" stop-color="#ffffff" stop-opacity="0.22"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+    </radialGradient>
+
+    <radialGradient id="bokehP" cx="50%" cy="50%" r="50%">
+      <stop offset="0" stop-color="#ffd6e6" stop-opacity="0.58"/>
+      <stop offset="55%" stop-color="#ffd6e6" stop-opacity="0.20"/>
+      <stop offset="100%" stop-color="#ffd6e6" stop-opacity="0"/>
+    </radialGradient>
+
+    <radialGradient id="bokehG" cx="50%" cy="50%" r="50%">
+      <stop offset="0" stop-color="#ffe7c7" stop-opacity="0.56"/>
+      <stop offset="55%" stop-color="#ffe7c7" stop-opacity="0.18"/>
+      <stop offset="100%" stop-color="#ffe7c7" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- filter -->
     <filter id="softShadow" x="-30%" y="-30%" width="160%" height="160%">
       <feDropShadow dx="0" dy="12" stdDeviation="16" flood-color="#000" flood-opacity="0.45"/>
     </filter>
 
-    <linearGradient id="pillFill" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#ffffff" stop-opacity="0.10"/>
-      <stop offset="1" stop-color="#ffffff" stop-opacity="0.04"/>
-    </linearGradient>
-
     <filter id="pillShadow" x="-40%" y="-40%" width="180%" height="180%">
       <feDropShadow dx="0" dy="7" stdDeviation="9" flood-color="#000" flood-opacity="0.32"/>
+    </filter>
+
+    <filter id="sparkGlowSoft" x="-90%" y="-90%" width="280%" height="280%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="1.6" result="b"/>
+      <feColorMatrix in="b" type="matrix"
+                     values="1 0 0 0 0
+            0 1 0 0 0
+            0 0 1 0 0
+            0 0 0 1.35 0"/>
+      <feMerge>
+        <feMergeNode in="g"/>
+      </feMerge>
     </filter>
 
     <!-- =======================
@@ -129,51 +161,15 @@
       <path class="icon" d="M21 13v2a4 4 0 0 1-4 4H3"/>
     </symbol>
 
-    <!-- soft bokeh gradients -->
-    <radialGradient id="bokehW" cx="50%" cy="50%" r="50%">
-      <stop offset="0" stop-color="#ffffff" stop-opacity="0.62"/>
-      <stop offset="55%" stop-color="#ffffff" stop-opacity="0.22"/>
-      <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
-    </radialGradient>
-
-    <radialGradient id="bokehP" cx="50%" cy="50%" r="50%">
-      <stop offset="0" stop-color="#ffd6e6" stop-opacity="0.58"/>
-      <stop offset="55%" stop-color="#ffd6e6" stop-opacity="0.20"/>
-      <stop offset="100%" stop-color="#ffd6e6" stop-opacity="0"/>
-    </radialGradient>
-
-    <radialGradient id="bokehG" cx="50%" cy="50%" r="50%">
-      <stop offset="0" stop-color="#ffe7c7" stop-opacity="0.56"/>
-      <stop offset="55%" stop-color="#ffe7c7" stop-opacity="0.18"/>
-      <stop offset="100%" stop-color="#ffe7c7" stop-opacity="0"/>
-    </radialGradient>
-
-
-    <!-- softer sparkle glow -->
-    <filter id="sparkGlowSoft" x="-90%" y="-90%" width="280%" height="280%">
-      <feGaussianBlur in="SourceGraphic" stdDeviation="1.6" result="b"/>
-      <feColorMatrix in="b" type="matrix"
-                     values="1 0 0 0 0
-            0 1 0 0 0
-            0 0 1 0 0
-            0 0 0 1.35 0"/>
-      <feMerge>
-        <feMergeNode in="g"/>
-      </feMerge>
-    </filter>
-
-
   </defs>
 
   <!-- =======================
        SCREEN
   ======================== -->
-
-
   <g filter="url(#softShadow)" clip-path="url(#cardClip)">
 
     <rect width="420" height="760" rx="34" fill="url(#bg)"/>
-    <!-- ✨ Falling Bokeh (many, soft, circles only) - FIXED for local rendering -->
+    <!-- Falling Bokeh (many, soft, circles only) -->
     <g clip-path="url(#cardClip)"
        mask="url(#sparkMask)"
        filter="url(#sparkGlowSoft)"

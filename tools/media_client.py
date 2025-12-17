@@ -6,9 +6,6 @@ START_CANDIDATES = [20, 30, 40, 60]
 
 
 class YouTubeGifGenerator:
-    """
-    yt-dlp + ffmpeg 로 10초 gif를 만들고, 시작 시점 / 원본 duration을 반환합니다.
-    """
 
     def make_10s_gif(self, video_id: str, out_gif: Path) -> Path:
         start = random.choice(START_CANDIDATES)
@@ -16,7 +13,7 @@ class YouTubeGifGenerator:
         out_gif.parent.mkdir(parents=True, exist_ok=True)
         tmp_mp4 = out_gif.with_suffix(".mp4")
 
-        # 1) 10초 구간만 mp4로 다운로드
+        # 1) Download only a 10-second segment as an MP4
         subprocess.check_call(
             [
                 "yt-dlp",
@@ -32,7 +29,7 @@ class YouTubeGifGenerator:
             ]
         )
 
-        # 2) 로컬 mp4 -> GIF
+        # 2) local mp4 -> GIF
         subprocess.check_call(
             [
                 "ffmpeg",

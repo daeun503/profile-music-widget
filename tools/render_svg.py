@@ -99,7 +99,7 @@ class SvgRenderer:
 
             if ch.isspace():
                 w += 0.33
-            elif code >= 0x1100:  # 한글 / CJK / 이모지 대부분
+            elif code >= 0x1100:
                 w += 1.0
             elif ch.isupper():
                 w += 0.72
