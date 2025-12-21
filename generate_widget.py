@@ -53,6 +53,12 @@ class YouTubeCardGeneratorApp:
             except Exception as e:
                 print(f"[WARN] Failed to generate GIF background → falling back to thumbnail: {e}")
 
+        try:
+            time_right = self.gif.get_video_duration__format_mmss(entry.video_id)
+        except Exception as e:
+            print(f"[WARN] Failed to get video duration: {e}")
+            time_right = datetime.now().strftime("%m:%d")
+
         color1, color2 = self.svg.extract_color_from_img(thumb_data)
         ctx = RenderContext(
             title=entry.title,
@@ -60,7 +66,7 @@ class YouTubeCardGeneratorApp:
             thumb_data=thumb_data,
             bg_data=bg_data,
             time_left="00:00",
-            time_right=datetime.now().strftime("%m:%d"),
+            time_right=time_right,
             channel_name=entry.channel_name,
             color_1=color1,
             color_2=color2,

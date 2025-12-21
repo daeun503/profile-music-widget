@@ -1,3 +1,4 @@
+import json
 import random
 import subprocess
 from pathlib import Path
@@ -6,7 +7,6 @@ START_CANDIDATES = [20, 30, 40, 60]
 
 
 class YouTubeGifGenerator:
-
     def make_10s_gif(self, video_id: str, out_gif: Path) -> Path:
         start = random.choice(START_CANDIDATES)
 
@@ -51,3 +51,18 @@ class YouTubeGifGenerator:
             pass
 
         return out_gif
+
+    def get_video_duration__format_mmss(self, video_id: str) -> str:
+        url = f"https://www.youtube.com/watch?v={video_id}"
+        proc = subprocess.run(
+            ["yt-dlp", "-j", "--no-playlist", url],
+            capture_output=True,
+            text=True,
+            check=True,
+        )
+
+        info = json.loads(proc.stdout)
+
+        duration = int(info["duration"])
+        m, s = divmod(duration, 60)
+        return f"{m:02d}:{s:02d}"
