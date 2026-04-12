@@ -37,7 +37,7 @@ USERNAME/
 Required changes
 
 - {{ YOUR_PLAYLIST_ID }}: Replace with the YouTube playlist ID to display in the widget
-- {{ YOUR_THEME }}: The theme to use. Currently supported themes: default.svg (more themes coming soon)
+- {{ YOUR_THEME }}: The theme to use. Supported: `default.svg`, `yt_phone.svg`, or `plain` (plain album-color background)
 
 ```yml
 # main.yml

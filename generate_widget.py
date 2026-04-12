@@ -24,6 +24,15 @@ def to_base64(data: bytes, mime: str) -> str:
     return f"data:{mime};base64,{b64}"
 
 
+def to_plain_bg_data(color: str) -> str:
+    svg = (
+        '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16">'
+        f'<rect width="100%" height="100%" fill="{color}"/>'
+        "</svg>"
+    )
+    return to_base64(svg.encode("utf-8"), "image/svg+xml")
+
+
 class YouTubeCardGeneratorApp:
     def __init__(self) -> None:
         self.paths = Paths()
@@ -32,7 +41,10 @@ class YouTubeCardGeneratorApp:
         self.svg = SvgRenderer()
 
     def run(self) -> None:
-        theme_path = self.paths.themes_dir / os.getenv("YT_THEME").strip()
+        theme_input = os.getenv("YT_THEME", "default.svg").strip()
+        is_plain_theme = theme_input.lower() in {"plain", "plain.svg"}
+        theme_file = "default.svg" if is_plain_theme else theme_input
+        theme_path = self.paths.themes_dir / theme_file
         if not theme_path.exists():
             raise RuntimeError(f"Theme file not found: {theme_path}")
 
@@ -44,16 +56,18 @@ class YouTubeCardGeneratorApp:
         self.paths.out_dir.mkdir(parents=True, exist_ok=True)
         image_data = self.yt_client.image_url_to_base64(entry.thumbnail_url)
         thumb_data = to_base64(image_data[0], image_data[1])
+        color1, color2 = self.svg.extract_color_from_img(thumb_data)
 
         bg_data = thumb_data
-        if is_gif_theme:
+        if is_plain_theme:
+            bg_data = to_plain_bg_data(color1)
+        elif is_gif_theme:
             try:
                 gif_path = self.gif.make_10s_gif(entry.video_id, self.paths.out_bg_gif)
                 bg_data = to_base64(gif_path.read_bytes(), "image/gif")
             except Exception as e:
                 print(f"[WARN] Failed to generate GIF background → falling back to thumbnail: {e}")
 
-        color1, color2 = self.svg.extract_color_from_img(thumb_data)
         ctx = RenderContext(
             title=entry.title,
             url=entry.url,

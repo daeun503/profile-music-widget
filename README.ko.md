@@ -33,7 +33,7 @@ USERNAME/
 
 변경이 필요한 부분
 - `{{ YOUR_PLAYLIST_ID }}`: 위젯에 표시할 YouTube 플레이리스트 ID로 변경
-- `{{ YOUR_THEME }}`: 사용할 테마. 현재 지원 테마: default.svg (추후 추가 예정)
+- `{{ YOUR_THEME }}`: 사용할 테마. 지원값: `default.svg`, `yt_phone.svg`, 또는 앨범 색상 단색 배경인 `plain`
 
 ```yml
 # main.yml
@@ -72,4 +72,3 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 ```
-

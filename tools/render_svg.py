@@ -35,6 +35,59 @@ def cal_dist(a: tuple[int, int, int], b: tuple[int, int, int]) -> int:
     return (a[0] - b[0]) ** 2 + (a[1] - b[1]) ** 2 + (a[2] - b[2]) ** 2
 
 
+def _to_linear_channel(v: int) -> float:
+    c = v / 255.0
+    if c <= 0.03928:
+        return c / 12.92
+    return ((c + 0.055) / 1.055) ** 2.4
+
+
+def rel_luminance(rgb: tuple[int, int, int]) -> float:
+    r, g, b = rgb
+    return (
+        0.2126 * _to_linear_channel(r)
+        + 0.7152 * _to_linear_channel(g)
+        + 0.0722 * _to_linear_channel(b)
+    )
+
+
+def contrast_ratio(a: tuple[int, int, int], b: tuple[int, int, int]) -> float:
+    l1 = rel_luminance(a)
+    l2 = rel_luminance(b)
+    lighter = max(l1, l2)
+    darker = min(l1, l2)
+    return (lighter + 0.05) / (darker + 0.05)
+
+
+def darken_to_meet_contrast(
+    bg: tuple[int, int, int],
+    fg: tuple[int, int, int] = (255, 255, 255),
+    min_ratio: float = 4.5,
+) -> tuple[int, int, int]:
+    if contrast_ratio(bg, fg) >= min_ratio:
+        return bg
+
+    lo = 0.0
+    hi = 1.0
+    for _ in range(20):
+        mid = (lo + hi) / 2
+        candidate = (
+            int(round(bg[0] * (1 - mid))),
+            int(round(bg[1] * (1 - mid))),
+            int(round(bg[2] * (1 - mid))),
+        )
+        if contrast_ratio(candidate, fg) >= min_ratio:
+            hi = mid
+        else:
+            lo = mid
+
+    return (
+        int(round(bg[0] * (1 - hi))),
+        int(round(bg[1] * (1 - hi))),
+        int(round(bg[2] * (1 - hi))),
+    )
+
+
 class SvgRenderer:
     TITLE_CLIP_WIDTH = 372
 
@@ -111,7 +164,7 @@ class SvgRenderer:
         return int(w * font_size)
 
     @staticmethod
-    def extract_color_from_img(thumb_data: str) -> tuple[str, str] | None:
+    def extract_color_from_img(thumb_data: str) -> tuple[str, str]:
         try:
             if thumb_data.startswith("data:"):
                 _, b64 = thumb_data.split(",", 1)
@@ -122,6 +175,8 @@ class SvgRenderer:
             palette = ct.get_palette(color_count=6, quality=5)
             c1 = palette[0]
             c2 = next((c for c in palette[1:] if cal_dist(c1, c) >= 28**2), palette[0])
+            c1 = darken_to_meet_contrast(c1)
+            c2 = darken_to_meet_contrast(c2)
             return to_hex(c1), to_hex(c2)
 
         except Exception:

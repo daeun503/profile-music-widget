@@ -11,7 +11,7 @@ inputs:
     description: "YouTube playlist id"
     required: true
   theme:
-    description: "Theme svg file name inside themes/"
+    description: "Theme: default.svg (default), yt_phone.svg, or plain (album color background)"
     required: false
     default: "default.svg"
   is_gif_bg:
