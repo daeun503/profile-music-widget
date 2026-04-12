@@ -6,11 +6,11 @@
     </linearGradient>
 
     <clipPath id="cardClip">
-      <rect width="560" height="160" rx="26"/>
+      <rect width="560" height="160" rx="12"/>
     </clipPath>
 
     <clipPath id="thumbClip">
-      <rect x="18" y="18" width="124" height="124" rx="18"/>
+      <rect x="18" y="18" width="124" height="124" rx="6"/>
     </clipPath>
 
     <clipPath id="titleClip">
@@ -18,9 +18,9 @@
     </clipPath>
 
     <style>
-      .t-sub { font: 600 12px ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto; fill: rgba(255,255,255,0.70); }
-      .t-title { font: 800 18px ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto; fill: rgba(255,255,255,0.98); }
-      .t-meta { font: 600 12px ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto; fill: rgba(255,255,255,0.55); }
+      .t-sub { font: 600 12px ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif; fill: rgba(255,255,255,0.70); }
+      .t-title { font: 800 18px ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif; fill: rgba(255,255,255,0.98); }
+      .t-meta { font: 600 12px ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif; fill: rgba(255,255,255,0.55); }
       .shadow { filter: drop-shadow(0 10px 24px rgba(0,0,0,0.35)); }
     </style>
 
@@ -31,7 +31,7 @@
   </defs>
 
   <g clip-path="url(#cardClip)">
-    <rect width="560" height="160" rx="26" fill="url(#bgGrad)"/>
+    <rect width="560" height="160" rx="12" fill="url(#bgGrad)"/>
 
     <!-- Background GIF/IMAGE -->
     <image href="{{BG_URL}}"
@@ -50,7 +50,7 @@
                x="18" y="18" width="124" height="124"
                preserveAspectRatio="xMidYMid slice"/>
       </g>
-      <rect x="18" y="18" width="124" height="124" rx="18"
+      <rect x="18" y="18" width="124" height="124" rx="6"
             fill="none" stroke="rgba(255,255,255,0.14)"/>
 
       <!-- Channel name -->

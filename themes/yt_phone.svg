@@ -4,11 +4,11 @@
          PAINT / DEPTH
     ======================== -->
     <clipPath id="cardClip">
-      <rect width="420" height="760" rx="34"/>
+      <rect width="420" height="760" rx="14"/>
     </clipPath>
 
     <clipPath id="thumbClip">
-      <rect x="50" y="92" width="320" height="320" rx="26"/>
+      <rect x="50" y="92" width="320" height="320" rx="8"/>
     </clipPath>
 
     <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
@@ -75,13 +75,13 @@
          ICON SYSTEM (SYMBOL)
     ======================== -->
     <style>
-      .tTop { font: 700 12px ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto; fill:
+      .tTop { font: 700 12px ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif; fill:
       rgba(255,255,255,.82); }
-      .tTitle { font: 900 26px ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto; fill:
+      .tTitle { font: 900 26px ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif; fill:
       rgba(255,255,255,.95); letter-spacing: 0.2px; }
-      .tArtist { font: 650 15px ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto; fill:
+      .tArtist { font: 650 15px ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif; fill:
       rgba(255,255,255,.70); }
-      .tSmall { font: 650 12px ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto; fill:
+      .tSmall { font: 650 12px ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif; fill:
       rgba(255,255,255,.58); }
 
       .icon-strong { color: rgba(255,255,255,.90); }
@@ -168,7 +168,7 @@
   ======================== -->
   <g filter="url(#softShadow)" clip-path="url(#cardClip)">
 
-    <rect width="420" height="760" rx="34" fill="url(#bg)"/>
+    <rect width="420" height="760" rx="14" fill="url(#bg)"/>
     <!-- Falling Bokeh (many, soft, circles only) -->
     <g clip-path="url(#cardClip)"
        mask="url(#sparkMask)"
@@ -303,9 +303,9 @@
     </g>
 
 
-    <rect width="420" height="760" rx="34" fill="url(#glowTop)"/>
-    <rect width="420" height="760" rx="34" fill="url(#glowBottom)"/>
-    <rect x="1" y="1" width="418" height="758" rx="33" fill="none" stroke="rgba(255,255,255,.10)"/>
+    <rect width="420" height="760" rx="14" fill="url(#glowTop)"/>
+    <rect width="420" height="760" rx="14" fill="url(#glowBottom)"/>
+    <rect x="1" y="1" width="418" height="758" rx="13" fill="none" stroke="rgba(255,255,255,.10)"/>
   </g>
 
   <!-- =======================
@@ -332,10 +332,10 @@
        ALBUM ART
   ======================== -->
   <g clip-path="url(#thumbClip)">
-    <rect x="50" y="92" width="320" height="320" rx="26" fill="rgba(255,255,255,.06)"
+    <rect x="50" y="92" width="320" height="320" rx="8" fill="rgba(255,255,255,.06)"
           stroke="rgba(255,255,255,.10)"/>
     <image href="{{THUMB_URL}}" x="50" y="92" width="320" height="320" preserveAspectRatio="xMidYMid slice"/>
-    <rect x="51" y="93" width="318" height="318" rx="25" fill="none" stroke="rgba(255,255,255,.08)"/>
+    <rect x="51" y="93" width="318" height="318" rx="7" fill="none" stroke="rgba(255,255,255,.08)"/>
   </g>
 
   <!-- =======================
