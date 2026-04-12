@@ -34,6 +34,7 @@ USERNAME/
 변경이 필요한 부분
 - `{{ YOUR_PLAYLIST_ID }}`: 위젯에 표시할 YouTube 플레이리스트 ID로 변경
 - `{{ YOUR_THEME }}`: 사용할 테마. 현재 지원 테마: default.svg (추후 추가 예정)
+- `{{ YOUR_BACKGROUND_MODE }}`: 선택 사항. `image`(기본값) 또는 앨범 색상의 단색 배경 `plain_album`
 
 ```yml
 # main.yml
@@ -62,6 +63,7 @@ jobs:
         with:
           playlist_id: {{ YOUR_PLAYLIST_ID }}
           theme: {{ YOUR_THEME }}
+          background_mode: {{ YOUR_BACKGROUND_MODE }}
 
       - name: Deploy dist to output branch
         uses: crazy-max/ghaction-github-pages@v4
@@ -72,4 +74,3 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 ```
-
