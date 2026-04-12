@@ -41,12 +41,14 @@ class YouTubeCardGeneratorApp:
         self.svg = SvgRenderer()
 
     def run(self) -> None:
-        theme_path = self.paths.themes_dir / os.getenv("YT_THEME").strip()
+        theme_input = os.getenv("YT_THEME", "default.svg").strip()
+        is_plain_theme = theme_input.lower() in {"plain", "plain.svg"}
+        theme_file = "default.svg" if is_plain_theme else theme_input
+        theme_path = self.paths.themes_dir / theme_file
         if not theme_path.exists():
             raise RuntimeError(f"Theme file not found: {theme_path}")
 
         is_gif_theme = os.getenv("YT_IS_GIF_BG") == "true"
-        bg_mode = os.getenv("YT_BG_MODE", "image").strip().lower()
 
         playlist_id = os.getenv("YT_PLAYLIST_ID").strip()
         entry = self.yt_client.pick_random_entry(playlist_id)
@@ -57,7 +59,7 @@ class YouTubeCardGeneratorApp:
         color1, color2 = self.svg.extract_color_from_img(thumb_data)
 
         bg_data = thumb_data
-        if bg_mode == "plain_album":
+        if is_plain_theme:
             bg_data = to_plain_bg_data(color1)
         elif is_gif_theme:
             try:
