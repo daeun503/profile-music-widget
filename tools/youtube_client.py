@@ -48,7 +48,7 @@ class YouTubeClient:
         if not video_id or not title or not url:
             raise RuntimeError("An invalid video entry was selected.")
 
-        thumb_url = f"https://i.ytimg.com/vi/{video_id}/hqdefault.jpg"
+        thumb_url = f"https://i.ytimg.com/vi/{video_id}/mqdefault.jpg"
         channel_name = "Unknown"
         if "author" in entry:
             channel_name = entry.author
