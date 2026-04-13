@@ -11,14 +11,21 @@ inputs:
     description: "YouTube playlist id"
     required: true
   theme:
-    description: "Theme: default.svg (default), yt_phone.svg, or plain (album color background)"
+    description: "Theme: default.svg (default) or yt_phone.svg"
     required: false
     default: "default.svg"
+  background:
+    description: "Background: image (default) or plain (album color background)"
+    required: false
+    default: "image"
   is_gif_bg:
     description: "Whether to use gif background or not"
     required: false
     default: "false"
-
+  corner_radius_scale:
+    description: "Corner roundness scale (0.0 to 2.0). 1.0 keeps default shape."
+    required: false
+    default: "1.0"
 runs:
   using: "composite"
   steps:
@@ -42,7 +49,9 @@ runs:
       env:
         YT_PLAYLIST_ID: ${{ inputs.playlist_id }}
         YT_THEME: ${{ inputs.theme }}
+        YT_BACKGROUND: ${{ inputs.background }}
         YT_IS_GIF_BG: ${{ inputs.is_gif_bg }}
+        YT_CORNER_RADIUS_SCALE: ${{ inputs.corner_radius_scale }}
       run: |
         python "$GITHUB_ACTION_PATH/generate_widget.py"
 
