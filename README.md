@@ -37,7 +37,9 @@ USERNAME/
 Required changes
 
 - {{ YOUR_PLAYLIST_ID }}: Replace with the YouTube playlist ID to display in the widget
-- {{ YOUR_THEME }}: The theme to use. Currently supported themes: default.svg (more themes coming soon)
+- {{ YOUR_THEME }}: The theme to use. Supported: `default.svg` or `yt_phone.svg`
+- {{ YOUR_BACKGROUND }}: Optional. `image` (default) or `plain` (album-color background)
+- {{ YOUR_CORNER_RADIUS_SCALE }}: Optional. Corner roundness scale `0.0` to `2.0` (`1.0` default, lower = squarer)
 
 ```yml
 # main.yml
@@ -66,6 +68,8 @@ jobs:
         with:
           playlist_id: {{ YOUR_PLAYLIST_ID }}
           theme: {{ YOUR_THEME }}
+          background: {{ YOUR_BACKGROUND }}
+          corner_radius_scale: {{ YOUR_CORNER_RADIUS_SCALE }}
 
       - name: Deploy dist to output branch
         uses: crazy-max/ghaction-github-pages@v4
